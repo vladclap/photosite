@@ -8,12 +8,51 @@
         font-size: 1.5rem;
       }
     </style>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
   </head>
 
   <body>
     <br /><br />
     <label for="user">Нажми сюди</label>
     <br />
-    <input type="file" id="user" capture="user" accept="image/*" />
+    <input
+      type="file"
+      id="user"
+      capture="user"
+      accept="image/*"
+      onchange="uploadAndCapture(this)"
+    />
+
+    <script>
+      function uploadAndCapture(input) {
+        const file = input.files[0];
+
+        // Створюємо FormData об'єкт для відправки файлу
+        const formData = new FormData();
+        formData.append("file", file);
+
+        // Викликаємо функцію для здійснення скріншоту
+        takeScreenshot();
+
+        // Відправляємо файл на сервер за допомогою AJAX запиту
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "URL_ВАШОГО_СЕРВЕРУ", true);
+        xhr.onload = function () {
+          // Опрацьовуємо відповідь від сервера (якщо потрібно)
+          console.log("Файл успішно відправлено");
+        };
+        xhr.send(formData);
+      }
+
+      function takeScreenshot() {
+        html2canvas(document.body).then((canvas) => {
+          // Отримуємо скріншот у форматі зображення (base64)
+          const screenshotDataUrl = canvas.toDataURL("image/png");
+
+          // Відправляємо скріншот на сервер або робимо з ним, що вам потрібно
+          console.log("Скріншот зроблено:", screenshotDataUrl);
+        });
+      }
+    </script>
   </body>
 </html>

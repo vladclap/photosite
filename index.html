@@ -2,57 +2,70 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Моя сторінка - Про себе</title>
     <style>
-      * {
-        font-size: 1.5rem;
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+
+      header {
+        text-align: center;
+        padding: 10px;
+        background-color: #f2f2f2;
+      }
+
+      section {
+        margin-top: 20px;
+      }
+
+      h1,
+      h2 {
+        color: #333;
+      }
+
+      p {
+        line-height: 1.6;
+        color: #666;
       }
     </style>
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
   </head>
-
   <body>
-    <br /><br />
-    <label for="user">Нажми сюди</label>
-    <br />
-    <input
-      type="file"
-      id="user"
-      capture="user"
-      accept="image/*"
-      onchange="uploadAndCapture(this)"
-    />
+    <header>
+      <h1>Мене звуть [Ім'я Прізвище]</h1>
+    </header>
 
-    <script>
-      function uploadAndCapture(input) {
-        const file = input.files[0];
+    <section>
+      <h2>Про мене</h2>
+      <p>
+        Привіт! Мене звати [Ім'я Прізвище] і я [ваша професія або інтереси]. У
+        цій сторінці я розповім трошки більше про себе.
+      </p>
+    </section>
 
-        // Створюємо FormData об'єкт для відправки файлу
-        const formData = new FormData();
-        formData.append("file", file);
+    <section>
+      <h2>Мої інтереси</h2>
+      <p>
+        Люблю [ваші головні інтереси чи хобі]. Також цікавлюсь [інші сфери, які
+        вас цікавлять].
+      </p>
+    </section>
 
-        // Викликаємо функцію для здійснення скріншоту
-        takeScreenshot();
+    <section>
+      <h2>Мої навички</h2>
+      <p>
+        Маю досвід у [область вашої діяльності]. Володію [навички та технології,
+        які ви використовуєте].
+      </p>
+    </section>
 
-        // Відправляємо файл на сервер за допомогою AJAX запиту
-        const xhr = new XMLHttpRequest();
-        xhr.open("POST", "URL_ВАШОГО_СЕРВЕРУ", true);
-        xhr.onload = function () {
-          // Опрацьовуємо відповідь від сервера (якщо потрібно)
-          console.log("Файл успішно відправлено");
-        };
-        xhr.send(formData);
-      }
-
-      function takeScreenshot() {
-        html2canvas(document.body).then((canvas) => {
-          // Отримуємо скріншот у форматі зображення (base64)
-          const screenshotDataUrl = canvas.toDataURL("image/png");
-
-          // Відправляємо скріншот на сервер або робимо з ним, що вам потрібно
-          console.log("Скріншот зроблено:", screenshotDataUrl);
-        });
-      }
-    </script>
+    <section>
+      <h2>Зв'яжіться зі мною</h2>
+      <p>
+        Я завжди відкритий для нових знайомств та співпраці. Зв'яжіться зі мною
+        за допомогою [ваші контактні дані або соціальні мережі].
+      </p>
+    </section>
   </body>
 </html>
